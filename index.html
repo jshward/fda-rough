@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<form id="movie-form">
+		<label for="movie-input">Add a Movie Bro</label>
+		<input type="text" id="movie-input">
+		<br>
+		<!-- Button triggers new movie to be added -->
+		<input id="add-movie" type="submit" value="Add some numbers Bro" class="search-btn">
+		<br>
+		<label for="name-input">Add a Movie Bro</label>
+		<input type="text" id="name-input">
+		<br>
+		<!-- Button triggers new movie to be added -->
+		<input id="add-movie" type="submit" value="Add a name Bro" class="search-btn">
+	</form>
+
+
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			console.log("ready!");
+			var searchTerm = "";
+
+
+			var productName = "";
+
+
+			$(".search-btn").on("click", function (event) {
+				event.preventDefault();
+				// This line grabs the input from the textbox
+				searchTerm = $("#movie-input").val().trim();
+				console.log(searchTerm);
+				productName = $("#name-input").val().trim();
+				console.log(productName);
+
+
+				//$(document).on("click", ".search-btn", searchBoxes)
+
+			});
+			function displayMovieInfo() {
+
+				var url = "https://www.barcodelookup.com/restapi";
+				url += '?' + $.param({
+					'api-key': "zlhc2u4ozde4aie874m53plmsxig6l",
+					"barcode": searchTerm,
+					//'name': productName,
+					'short': 'y'
+				});
+
+				// Creating an AJAX call for the specific movie button being clicked
+				$.ajax({
+					url: url,
+					method: "GET"
+				}).then(function (response) {
+					var results = response.data;
+					console.log(results);
+				});
+
+
+
+
+
+
+			}
+			function searchBoxes() {
+				console.log(searchTerm);
+				console.log(productName);
+
+			};
+
+
+
+			$(document).on("click", ".search-btn", displayMovieInfo);
+		});
+
+
+
+	</script>
+
+</body>
+
+</html>
