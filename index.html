@@ -59,10 +59,10 @@
 
 				// Creating an AJAX call for the specific movie button being clicked
 				$.ajax({
-					url: 'https://corsbridge.herokuapp.com/',
-					method: 'POST', data: { 'url': url }, headers: { 'Content-Type': 'application/json' }
+					url: 'https://corsbridge.herokuapp.com/' + encodeURIComponent(url),
+					method: 'GET'
 				}).then(function (response) {
-					var results = response.data;
+					var results = response;
 					console.log(results);
 				});
 
