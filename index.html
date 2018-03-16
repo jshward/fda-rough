@@ -51,7 +51,7 @@
 
 				var url = "https://www.barcodelookup.com/restapi";
 				url += '?' + $.param({
-					'key': "zlhc2u4ozde4aie874m53plmsxig6l",
+					'key': "uh1j4boefkxomew3d6sxyv2fieffk8",
 					"barcode": searchTerm,
 					//'name': productName,
 					'short': 'y'
@@ -59,8 +59,8 @@
 
 				// Creating an AJAX call for the specific movie button being clicked
 				$.ajax({
-					url: url,
-					method: "GET"
+					url: 'https://corsbridge.herokuapp.com/',
+					method: 'POST', data: { 'url': url }, headers: { 'Content-Type': 'application/json' }
 				}).then(function (response) {
 					var results = response.data;
 					console.log(results);
